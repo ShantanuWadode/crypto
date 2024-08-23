@@ -1,22 +1,33 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [walletConnected, setWalletConnected] = useState(false);
+  const [balance, setBalance] = useState(null);
+
+  const connectWallet = async () => {
+    // Simulating wallet connection
+    setWalletConnected(true);
+
+    // Fetch balance from the wallet (simulated)
+    const simulatedBalance = "10 ETH";
+    setBalance(simulatedBalance);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Crypto Wallet</h1>
+        {!walletConnected ? (
+          <button onClick={connectWallet} className="connect-btn">
+            Connect Wallet
+          </button>
+        ) : (
+          <div className="wallet-info">
+            <p>Wallet Connected</p>
+            <p>Balance: {balance}</p>
+          </div>
+        )}
       </header>
     </div>
   );
